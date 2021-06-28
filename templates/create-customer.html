@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-create.css') }}">  
+      
+          
+</head>
+<body>
+    <header><h1>Tecnoglass APP</h1></header>
+    <h2>Create Customer</h2>
+    <aside>
+        <nav>
+            <a id="home" href="http://localhost:5000/">Home</a>
+        </nav>
+    </aside>
+        <div>
+            <h3>Customer Information</h3>
+        </div>
+    <form id='create-customer' action='/create-customer/customers' method='post'>        
+        <div>
+            <label for="name">InputName: </label>
+            <input type="text" name="name" required><br>
+            <label for="address">Input Customer Address: </label>
+            <input type="text" name="address" required><br>
+            <label for="customer_phone">Input Customer Phone Number: </label>
+            <input type="text" name="customer_phone" required><br>
+            <label for="country">Input Customer Country: </label>
+            <input type="text" name="country" required><br>
+            <label for="customer_email">Input Customer Email: </label>
+            <input type="text" name="customer_email" required><br>
+            <input type="submit" value="Create record"><br>
+        </div>
+    </form>
+    <div>
+            
+
+    <script type="text/javascript"
+         src="{{ url_for('static', filename='scripts/script.js') }}"></script>  
+</body>
+</html>

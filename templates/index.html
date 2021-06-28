@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+        
+        
+</head>
+<body>
+    <header><h1>Tecnoglass APP</h1></header>
+    <aside>
+        <nav>
+            <a id="home" href="http://localhost:5000/">Home</a>
+        </nav>
+    </aside>
+    <section class="options">
+        <form action="/fetch" method="post">
+        <div>
+            <label for="table-type">Select the table: </label>
+            <select name="table-type" id="table-type">
+                <option value="customers">Customers</option>
+                <option value="orders">Orders</option>
+            </select>
+        </div>
+        <div>
+            <label for="search-bar">Input a Customer ID: </label>
+            <input type="text" name="search-bar" value='{{ids}}'>
+        </div>
+        <div>
+            <!-- <label for="fetch-button">Configuración probada: </label> -->
+            <input type="submit" value="Fetch">     
+        </div>
+        <div>
+        </form>
+        <form action='/create-customer' method='get'>
+            <input type="submit" value="Create Customer">
+        </form>
+        <form action='/create-order' method='get'>
+            <input type="submit" value="Create Order">
+        </form> 
+        <form action='/update' method='get'>
+            <input type="submit" value="Update Customer Info">
+        </form>        
+        </div>
+    </section>
+    <section class="table">
+        <table>
+            <tbody>                
+                {% if table == 'customers' %}
+                    <tr class=table_header>
+                        <td>Customer ID</td>
+                        <td>Name</td>
+                        <td>Address</td>
+                        <td>Phone Number</td>
+                        <td>Country</td>
+                        <td>Email</td>
+                    </tr>    
+                    {% for item in data %}
+                    <tr class=table_body>
+                        <td name="customer-id">{{item['customer_id']}}</td>
+                        <td name="name">{{item['name']}}</td>
+                        <td name="address">{{item['address']}}</td>
+                        <td name="phone-number">{{item['phone_number']}}</td>
+                        <td name="country">{{item['country']}}</td>
+                        <td name="email">{{item['email']}}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                {% elif table == 'orders' %}
+                    <tr class=table_header>
+                        <td>Order ID</td>
+                        <td>Customer ID</td>
+                        <td>Glass Configuration</td>
+                        <td>Date Created</td>
+                        <td>Order Status</td>
+                    </tr>
+                    {% for item in data %}                        
+                    <tr class=table_body>
+                    <td name="order-id">{{item['order_id']}}</td>
+                    <td name="customer-id">{{item['customer_id']}}</td>
+                    <td name="glass_config">{{item['glass_config']}}</td>
+                    <td name="date">{{item['date']}}</td>
+                    <td name="order-status">{{item['order_status']}}</td>
+                    </tr>
+                    {% endfor %}    
+                    
+                {% endif %} 
+                {% if (table and ids) %}
+                    <div>
+                        <form action='/delete' method='post'>                                        
+                            <input type="text" name="table-delete" value="{{table}}" hidden>
+                            <label for='id-delete'>Order ID to delete: </label>
+                            <input type="text" name="id-delete">
+                            <input type="submit" value="Delete Record">
+                        </form>
+                    {% if table=='orders' %}
+                        <form action='/update-order' method='post'>
+                            <label for='id-order'>Order ID to update: </label>            
+                            <input type="text" name="id-order" required>
+                            <select name="new-status" id="new-status">
+                                <option value="approved">Approved</option>
+                                <option value="denied">Denied</option>
+                            </select>            
+                            <input type="submit" value="Update Order Status">
+                        </form>
+                    {% endif %}
+                    </div>
+                {% endif %}    
+            </tbody>            
+        </table>
+    </section>
+
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-create.css') }}">  
+      
+          
+</head>
+<body>
+    <header><h1>Tecnoglass APP</h1></header>
+    <h2>Create Customer</h2>
+    <aside>
+        <nav>
+            <a id="home" href="http://localhost:5000/">Home</a>
+        </nav>
+    </aside>
+        <div>
+            <h3>Customer Information</h3>
+        </div>
+    <form action='/update/fetch' method='post'>        
+        <div>
+            <label for="customer_id">Input Customer ID: </label>
+            <input type="text" name="customer_id_upd" value="{{ids}}" required><br>
+            <input type="submit" value="Get Customer Info"><br>
+        </div>
+    </form>
+    {% if data %}
+    <form action='/update/record' method='post'>        
+        <div>
+            <input type='text' name='customer_id' value='{{ids}}' hidden>
+            <label for="name" >Input Customer Name: </label>
+            <input type="text" name="name" value="{{data[0]['name']}}" required><br>
+            <label for="address"">Input Customer Address: </label>
+            <input type="text" name="address" value="{{data[0]['address']}}" required><br>
+            <label for="customer_phone"">Input Customer Phone Number: </label>
+            <input type="text" name="customer_phone" value="{{data[0]['phone_number']}}" required><br>
+            <label for="country">Input Customer Country: </label>
+            <input type="text" name="country" value="{{data[0]['country']}}" required><br>
+            <label for="customer_email">Input Customer Email: </label>
+            <input type="text" name="customer_email"  value="{{data[0]['email']}}" required><br>
+            <input type="submit" value="Update Customer Info"><br>
+        </div>
+    </form>
+    {% endif %}
+    <div>
+            
+
+    <script type="text/javascript"
+         src="{{ url_for('static', filename='scripts/script.js') }}"></script>  
+</body>
+</html>

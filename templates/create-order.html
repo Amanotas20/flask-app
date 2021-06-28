@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-create.css') }}">  
+      
+          
+</head>
+<body>
+    <header><h1>Tecnoglass APP</h1></header>
+    <h2>Create Order</h2>
+    <aside>
+        <nav>
+            <a id="home" href="http://localhost:5000/">Home</a>
+        </nav>
+    </aside>
+    <div>
+            <h3>Order Information</h3>
+        </div>
+    <form id='create-order' action='/create-order/orders' method='post'>        
+        <div>
+            <label for="customer_id">Input Customer ID: </label>
+            <input type="text" name="customer_id" required><br>
+            <label for="glass-config">Input Glass Configuration: </label>
+            <input type="text" name="glass_config" required><br>
+            <!-- <label for="order_status">Input Order Status: </label>
+            <input type="text" name="order_status"><br> -->
+            <input type="submit" value="Create record"><br>
+        </div>
+    </form>
+
+    <script type="text/javascript"
+         src="{{ url_for('static', filename='scripts/script.js') }}"></script>  
+</body>
+</html>
