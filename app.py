@@ -27,7 +27,7 @@ def fetch():
 def customer_page():
     return render_template('create-customer.html')
 
-#REDIRECTS TO CREATE NEW CUSTOMER PAGE
+#REDIRECTS TO CREATE NEW ORDER PAGE
 @app.route('/create-order')
 def order_page():
     return render_template('create-order.html')
